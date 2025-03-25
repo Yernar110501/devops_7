@@ -1,11 +1,13 @@
-name: CI
+name: CI/CD
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -21,4 +23,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest
+        run: |
+          pytest
